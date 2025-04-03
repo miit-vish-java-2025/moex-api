@@ -19,7 +19,22 @@ public class MoexApiClient {
         String url = "https://iss.moex.com/iss/engines/stock/markets/shares/securities/" + ticker + ".xml";
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
         String responseBody = response.getBody();
-        JsonNode jsonNode = mapper.readTree(responseBody);
+        JsonNode jsonNodeData = mapper.readTree(responseBody).get("data");
+        for (JsonNode jsonNodeDatum : jsonNodeData){
+            String jsonNodeId = jsonNodeDatum.get("id").textValue();
+            if (!"marketdata".equals(jsonNodeId)){
+                continue;
+            }
+            JsonNode jsonNodeRows =jsonNodeDatum.get("rows");
+            for (JsonNode obj : jsonNodeData){
+                String jsonNodeBoardId = jsonNodeRows.get("BOARDID").textValue();
+                if (!"TQBR".equals(jsonNodeBoardId)){
+                    continue;
+                }
+                JsonNode jsonNodeLastPrice =obj.get("LAST");
+            }
+        }
+
         return null;
     }
 }
