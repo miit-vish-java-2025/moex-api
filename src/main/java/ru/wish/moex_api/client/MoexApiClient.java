@@ -25,16 +25,17 @@ public class MoexApiClient {
             if (!"marketdata".equals(jsonNodeId)){
                 continue;
             }
-            JsonNode jsonNodeRows =jsonNodeDatum.get("rows");
-            for (JsonNode obj : jsonNodeData){
-                String jsonNodeBoardId = jsonNodeRows.get("BOARDID").textValue();
+            JsonNode jsonNodeRows = jsonNodeDatum.get("rows").get("row");
+            for (JsonNode obj : jsonNodeRows){
+                String jsonNodeBoardId = obj.get("BOARDID").textValue();
                 if (!"TQBR".equals(jsonNodeBoardId)){
                     continue;
                 }
-                JsonNode jsonNodeLastPrice =obj.get("LAST");
+                BigDecimal jsonNodeLastPrice = obj.get("LAST").decimalValue();
+                return jsonNodeLastPrice;
             }
         }
 
-        return null;
+        throw new IllegalArgumentException("Failed to find last price!");
     }
 }
