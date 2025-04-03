@@ -11,7 +11,7 @@ public class MoexApiClient {
     private final RestTemplate restTemplate = new RestTemplate();
 
     public BigDecimal getLastPriceForTicker(String ticker) {
-        String url = "https://iss.moex.com/iss/engines/stock/markets/shares/securities/" + ticker;
+        String url = "https://iss.moex.com/iss/engines/stock/markets/shares/securities/" + ticker + ".xml";
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
         return null;
     }
