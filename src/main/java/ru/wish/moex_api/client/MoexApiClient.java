@@ -31,7 +31,8 @@ public class MoexApiClient {
                 if (!"TQBR".equals(jsonNodeBoardId)){
                     continue;
                 }
-                BigDecimal jsonNodeLastPrice = obj.get("LAST").decimalValue();
+                String jsonNodeLastPriceStr = obj.get("LAST").textValue();
+                BigDecimal jsonNodeLastPrice = new BigDecimal(jsonNodeLastPriceStr);
                 return jsonNodeLastPrice;
             }
         }
