@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ru.wish.moex_api.client.MoexApiClient;
 
+import java.math.BigDecimal;
+
 @Service
 public class MoexPollingService {
     private MoexApiClient moexClient;
@@ -19,10 +21,15 @@ public class MoexPollingService {
 
     }
     private void run() {
-        try {
-            moexClient.getLastPriceForTicker("SBER");
-        } catch (Exception e){
-            logger.error("Failed to poll moex price", e);
+        while (true) {
+            try {
+                String ticker = "SBER";
+                BigDecimal price = moexClient.getLastPriceForTicker(ticker);
+                logger.info("Price for {}: {} RUB", ticker, price.toString());
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                logger.error("Failed to poll moex price", e);
+            }
         }
     }
 }
