@@ -6,7 +6,7 @@
 </head>
 <body>
 <div>
-    Hello World!
+    Mean price for SBER is ${mean}
 </div>
 </body>
 </html>
