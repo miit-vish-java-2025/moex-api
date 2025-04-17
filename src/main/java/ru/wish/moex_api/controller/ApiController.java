@@ -13,7 +13,7 @@ public class ApiController {
         this.dataAggregationService = dataAggregationService;
     }
 
-    @GetMapping("/mean")
+    @GetMapping("/api/mean")
     public String getMean() {
         return String.valueOf(dataAggregationService.getMean());
     }
