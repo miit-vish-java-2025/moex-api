@@ -13,4 +13,8 @@ public class DataAggregationService {
     public void addValue(@Nonnull BigDecimal price) {
         descriptiveStatistics.addValue(price.doubleValue());
     }
+
+    public double getMean() {
+        return descriptiveStatistics.getMean();
+    }
 }
