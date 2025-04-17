@@ -8,7 +8,7 @@ import ru.wish.moex_api.client.MoexApiClient;
 
 import java.math.BigDecimal;
 
-@Service
+//@Service
 public class MoexPollingService {
     private MoexApiClient moexClient;
     private DataAggregationService aggService;

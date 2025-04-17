@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
-@Service
+//@Service
 public class DataAggregationService {
     private DescriptiveStatistics descriptiveStatistics = new DescriptiveStatistics(100);
 
