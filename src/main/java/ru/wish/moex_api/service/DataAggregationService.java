@@ -10,7 +10,6 @@ import java.time.Instant;
 
 //@Service
 public class DataAggregationService {
-    private DescriptiveStatistics descriptiveStatistics = new DescriptiveStatistics(100);
     private PriceHistoryRepository priceHistoryRepository;
 
     public DataAggregationService(PriceHistoryRepository priceHistoryRepository) {
@@ -18,7 +17,6 @@ public class DataAggregationService {
     }
 
     public void addValue(@Nonnull BigDecimal price) {
-        descriptiveStatistics.addValue(price.doubleValue());
         PriceHistoryEntity entity = new PriceHistoryEntity();
         entity.setPrice(price);
         entity.setTimestamp(Instant.now());
@@ -26,6 +24,11 @@ public class DataAggregationService {
     }
 
     public double getMean() {
+        Iterable<PriceHistoryEntity> all = priceHistoryRepository.findAll();
+        DescriptiveStatistics descriptiveStatistics = new DescriptiveStatistics(100);
+        for (PriceHistoryEntity entity : all) {
+            descriptiveStatistics.addValue(entity.getPrice().doubleValue());
+        }
         return descriptiveStatistics.getMean();
     }
 }
