@@ -28,7 +28,7 @@ public class MoexPollingService {
                 BigDecimal price = moexClient.getLastPriceForTicker(ticker);
                 logger.info("Price for {}: {} RUB", ticker, price.toString());
                 aggService.addValue(price);
-                Thread.sleep(1000);
+                Thread.sleep(10_000);
             } catch (Exception e) {
                 logger.error("Failed to poll moex price", e);
             }
