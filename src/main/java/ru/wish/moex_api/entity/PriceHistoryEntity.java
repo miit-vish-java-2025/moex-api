@@ -1,10 +1,9 @@
 package ru.wish.moex_api.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Generated;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -14,6 +13,7 @@ import java.time.Instant;
 @Table(name = "price_history")
 public class PriceHistoryEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Instant timestamp;
     private BigDecimal price;
