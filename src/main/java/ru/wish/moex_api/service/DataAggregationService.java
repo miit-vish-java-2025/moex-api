@@ -24,9 +24,9 @@ public class DataAggregationService {
     }
 
     public double getMean() {
-        Iterable<PriceHistoryEntity> all = priceHistoryRepository.findAll();
-        DescriptiveStatistics descriptiveStatistics = new DescriptiveStatistics(100);
-        for (PriceHistoryEntity entity : all) {
+        Iterable<PriceHistoryEntity> entities = priceHistoryRepository.getLastPrices(10);
+        DescriptiveStatistics descriptiveStatistics = new DescriptiveStatistics();
+        for (PriceHistoryEntity entity : entities) {
             descriptiveStatistics.addValue(entity.getPrice().doubleValue());
         }
         return descriptiveStatistics.getMean();

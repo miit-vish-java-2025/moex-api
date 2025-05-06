@@ -1,10 +1,14 @@
 package ru.wish.moex_api.repository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ru.wish.moex_api.entity.PriceHistoryEntity;
 
+import java.util.List;
+
 @Repository
 public interface PriceHistoryRepository extends CrudRepository<PriceHistoryEntity, Long> {
-
+    @Query(value = "SELECT * FROM price_history ORDER BY timestamp DESC LIMIT ?", nativeQuery = true)
+    List<PriceHistoryEntity> getLastPrices(int count);
 }
