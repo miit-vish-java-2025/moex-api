@@ -13,6 +13,11 @@ spring:
     consumer:
       group-id: moex-api-group
       auto-offset-reset: earliest
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: ru.vish.moex_api.kafka.model
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 #  main:
 #    web-application-type: none # allows to disable embedded web server

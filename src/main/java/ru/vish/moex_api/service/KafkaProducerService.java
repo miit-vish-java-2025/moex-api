@@ -13,10 +13,10 @@ import java.time.Instant;
 @Service
 public class KafkaProducerService {
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, SharePriceKafkaMessage> kafkaTemplate;
     private final ObjectMapper objectMapper;
 
-    public KafkaProducerService(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
+    public KafkaProducerService(KafkaTemplate<String, SharePriceKafkaMessage> kafkaTemplate, ObjectMapper objectMapper) {
         this.kafkaTemplate = kafkaTemplate;
         this.objectMapper = objectMapper;
     }
@@ -27,7 +27,6 @@ public class KafkaProducerService {
                 .timestamp(Instant.now())
                 .price(price)
                 .build();
-        String messageString = objectMapper.writeValueAsString(message);
-        kafkaTemplate.send("share-prices", messageString);
+        kafkaTemplate.send("share-prices", message);
     }
 }
