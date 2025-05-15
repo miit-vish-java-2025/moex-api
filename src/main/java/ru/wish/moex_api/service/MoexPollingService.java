@@ -11,12 +11,14 @@ import java.math.BigDecimal;
 //@Service
 public class MoexPollingService {
     private MoexApiClient moexClient;
-    private DataAggregationService aggService;
+    private final DataAggregationService aggService;
+    private final KafkaProducerService kafkaProducerService;
     private final Logger logger = LoggerFactory.getLogger(MoexPollingService.class);
 
-    public MoexPollingService(MoexApiClient moexClient, DataAggregationService aggService){
+    public MoexPollingService(MoexApiClient moexClient, DataAggregationService aggService, KafkaProducerService kafkaProducerService){
         this.moexClient = moexClient;
         this.aggService = aggService;
+        this.kafkaProducerService = kafkaProducerService;
         new Thread(() -> {
             this.run();
         }).start();
@@ -28,6 +30,7 @@ public class MoexPollingService {
                 BigDecimal price = moexClient.getLastPriceForTicker(ticker);
                 logger.info("Price for {}: {} RUB", ticker, price.toString());
                 aggService.addValue(price);
+                kafkaProducerService.publish(price);
             } catch (Exception e) {
                 logger.error("Failed to poll moex price", e);
             }
