@@ -5,3 +5,4 @@
 - Создать топик внутри кафки:
   - Войти внутрь контейнера: `docker exec -ti moex-api-kafka-1 bash`
   - Внутри контейнера выполнить `/opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --replication-factor 1 --partitions 4 --topic share-prices`
+- Миграции postgresql (создание таблиц) выполняется автоматически при помощи liquibase (см. файлы в директории `src/main/resources/db/changelog`)
