@@ -1,0 +1,1 @@
+alter table price_history drop column test;
