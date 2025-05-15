@@ -1,10 +1,8 @@
-package ru.wish.moex_api.service;
+package ru.vish.moex_api.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-import ru.wish.moex_api.client.MoexApiClient;
+import ru.vish.moex_api.client.MoexApiClient;
 
 import java.math.BigDecimal;
 

@@ -1,9 +1,8 @@
-package ru.wish.moex_api.controller;
+package ru.vish.moex_api.controller;
 
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.wish.moex_api.service.DataAggregationService;
+import ru.vish.moex_api.service.DataAggregationService;
 
 @RestController
 public class ApiController {

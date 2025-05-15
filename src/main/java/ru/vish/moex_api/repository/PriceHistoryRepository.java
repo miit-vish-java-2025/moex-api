@@ -1,9 +1,9 @@
-package ru.wish.moex_api.repository;
+package ru.vish.moex_api.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import ru.wish.moex_api.entity.PriceHistoryEntity;
+import ru.vish.moex_api.entity.PriceHistoryEntity;
 
 import java.util.List;
 

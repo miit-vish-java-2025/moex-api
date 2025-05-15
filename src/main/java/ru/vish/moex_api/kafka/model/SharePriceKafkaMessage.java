@@ -1,4 +1,4 @@
-package ru.wish.moex_api.kafka.model;
+package ru.vish.moex_api.kafka.model;
 
 import lombok.Builder;
 import lombok.Data;

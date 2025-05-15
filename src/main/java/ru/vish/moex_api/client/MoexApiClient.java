@@ -1,4 +1,4 @@
-package ru.wish.moex_api.client;
+package ru.vish.moex_api.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;

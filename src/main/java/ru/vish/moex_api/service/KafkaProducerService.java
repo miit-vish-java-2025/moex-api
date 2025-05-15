@@ -1,9 +1,9 @@
-package ru.wish.moex_api.service;
+package ru.vish.moex_api.service;
 
 import jakarta.annotation.Nonnull;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import ru.wish.moex_api.kafka.model.SharePriceKafkaMessage;
+import ru.vish.moex_api.kafka.model.SharePriceKafkaMessage;
 
 import java.math.BigDecimal;
 import java.time.Instant;

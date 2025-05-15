@@ -1,9 +1,9 @@
-package ru.wish.moex_api.service;
+package ru.vish.moex_api.service;
 
 import jakarta.annotation.Nonnull;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
-import ru.wish.moex_api.entity.PriceHistoryEntity;
-import ru.wish.moex_api.repository.PriceHistoryRepository;
+import ru.vish.moex_api.entity.PriceHistoryEntity;
+import ru.vish.moex_api.repository.PriceHistoryRepository;
 
 import java.math.BigDecimal;
 import java.time.Instant;

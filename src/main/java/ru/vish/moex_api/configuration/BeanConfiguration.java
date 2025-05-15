@@ -1,12 +1,12 @@
-package ru.wish.moex_api.configuration;
+package ru.vish.moex_api.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import ru.wish.moex_api.client.MoexApiClient;
-import ru.wish.moex_api.repository.PriceHistoryRepository;
-import ru.wish.moex_api.service.DataAggregationService;
-import ru.wish.moex_api.service.KafkaProducerService;
-import ru.wish.moex_api.service.MoexPollingService;
+import ru.vish.moex_api.client.MoexApiClient;
+import ru.vish.moex_api.repository.PriceHistoryRepository;
+import ru.vish.moex_api.service.DataAggregationService;
+import ru.vish.moex_api.service.KafkaProducerService;
+import ru.vish.moex_api.service.MoexPollingService;
 
 @Configuration
 public class BeanConfiguration {

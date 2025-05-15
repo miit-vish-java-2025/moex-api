@@ -1,4 +1,4 @@
-package ru.wish.moex_api.client;
+package ru.vish.moex_api.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.assertj.core.api.Assertions;
@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class MoexApiClientTest {

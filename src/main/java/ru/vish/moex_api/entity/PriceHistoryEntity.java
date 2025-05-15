@@ -1,4 +1,4 @@
-package ru.wish.moex_api.entity;
+package ru.vish.moex_api.entity;
 
 
 import jakarta.persistence.*;
