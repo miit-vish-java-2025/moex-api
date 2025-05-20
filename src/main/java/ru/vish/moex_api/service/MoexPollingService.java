@@ -34,6 +34,7 @@ public class MoexPollingService {
         try {
             BigDecimal price = moexClient.getLastPriceForTicker(ticker);
             logger.info("Price for {}: {} RUB", ticker, price.toString());
+            // TODO: invoke aggService after we add multi-ticker support there
         } catch (Exception e) {
             logger.error("Failed to poll {} price", ticker, e);
         }
