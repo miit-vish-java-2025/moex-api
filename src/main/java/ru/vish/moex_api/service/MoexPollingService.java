@@ -19,13 +19,15 @@ public class MoexPollingService {
     }
     @Scheduled(fixedRate = 10000)
     private void run() {
+        parsePrice("SBER");
+    }
+
+    private void parsePrice(String ticker) {
         try {
-            String ticker = "SBER";
             BigDecimal price = moexClient.getLastPriceForTicker(ticker);
             logger.info("Price for {}: {} RUB", ticker, price.toString());
-            aggService.addValue(price);
         } catch (Exception e) {
-            logger.error("Failed to poll moex price", e);
+            logger.error("Failed to poll {} price", ticker, e);
         }
     }
 }
