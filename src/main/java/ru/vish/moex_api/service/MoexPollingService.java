@@ -6,10 +6,15 @@ import org.springframework.scheduling.annotation.Scheduled;
 import ru.vish.moex_api.client.MoexApiClient;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 //@Service
 public class MoexPollingService {
     private MoexApiClient moexClient;
+    private ExecutorService executor = Executors.newFixedThreadPool(2);
     private final DataAggregationService aggService;
     private final Logger logger = LoggerFactory.getLogger(MoexPollingService.class);
 
@@ -19,7 +24,10 @@ public class MoexPollingService {
     }
     @Scheduled(fixedRate = 10000)
     private void run() {
-        parsePrice("SBER");
+        List<String> tickers = List.of("SBER", "LKOH", "MGNT");
+        for (String ticker : tickers) {
+            executor.submit(() -> parsePrice(ticker));
+        }
     }
 
     private void parsePrice(String ticker) {
