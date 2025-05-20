@@ -2,6 +2,7 @@ package ru.vish.moex_api.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import ru.vish.moex_api.client.MoexApiClient;
 
 import java.math.BigDecimal;
@@ -15,25 +16,16 @@ public class MoexPollingService {
     public MoexPollingService(MoexApiClient moexClient, DataAggregationService aggService){
         this.moexClient = moexClient;
         this.aggService = aggService;
-        new Thread(() -> {
-            this.run();
-        }).start();
     }
+    @Scheduled(fixedRate = 10000)
     private void run() {
-        while (true) {
-            try {
-                String ticker = "SBER";
-                BigDecimal price = moexClient.getLastPriceForTicker(ticker);
-                logger.info("Price for {}: {} RUB", ticker, price.toString());
-                aggService.addValue(price);
-            } catch (Exception e) {
-                logger.error("Failed to poll moex price", e);
-            }
-            try {
-                Thread.sleep(10_000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        try {
+            String ticker = "SBER";
+            BigDecimal price = moexClient.getLastPriceForTicker(ticker);
+            logger.info("Price for {}: {} RUB", ticker, price.toString());
+            aggService.addValue(price);
+        } catch (Exception e) {
+            logger.error("Failed to poll moex price", e);
         }
     }
 }
