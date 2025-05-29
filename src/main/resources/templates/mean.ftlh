@@ -6,7 +6,7 @@
 </head>
 <body>
 <div>
-    Mean price for SBER is ${mean}
+    Mean price for ${ticker} is ${mean}
 </div>
 </body>
 </html>

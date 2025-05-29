@@ -16,5 +16,6 @@ public class PriceHistoryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Instant timestamp;
+    private String ticker;
     private BigDecimal price;
 }

@@ -16,15 +16,16 @@ public class DataAggregationService {
         this.priceHistoryRepository = priceHistoryRepository;
     }
 
-    public void addValue(@Nonnull BigDecimal price) {
+    public void addValue(@Nonnull String ticker, @Nonnull BigDecimal price) {
         PriceHistoryEntity entity = new PriceHistoryEntity();
         entity.setPrice(price);
+        entity.setTicker(ticker);
         entity.setTimestamp(Instant.now());
         priceHistoryRepository.save(entity);
     }
 
-    public double getMean() {
-        Iterable<PriceHistoryEntity> entities = priceHistoryRepository.getLastPrices(10);
+    public double getMean(@Nonnull String ticker) {
+        Iterable<PriceHistoryEntity> entities = priceHistoryRepository.getLastPrices(ticker,10);
         DescriptiveStatistics descriptiveStatistics = new DescriptiveStatistics();
         for (PriceHistoryEntity entity : entities) {
             descriptiveStatistics.addValue(entity.getPrice().doubleValue());

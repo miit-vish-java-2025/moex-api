@@ -1,6 +1,7 @@
 package ru.vish.moex_api.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.vish.moex_api.service.DataAggregationService;
 
@@ -13,7 +14,7 @@ public class ApiController {
     }
 
     @GetMapping("/api/mean")
-    public String getMean() {
-        return String.valueOf(dataAggregationService.getMean());
+    public String getMean(@RequestParam String ticker) {
+        return String.valueOf(dataAggregationService.getMean(ticker));
     }
 }
